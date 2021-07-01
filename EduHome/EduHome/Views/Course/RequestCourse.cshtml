@@ -1,0 +1,67 @@
+﻿@using EduHome.Models
+@model Request
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Request";
+}
+
+
+<!-- Banner Area Start -->
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>Request</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Area End -->
+<!-- Register start -->
+<div class="register-area pt-150 pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <div class="login">
+                    <div class="login-form-container">
+                        <div class="login-text">
+                            <h2>REQUEST</h2>
+                            <span>Please login using account detail bellow.</span>
+                        </div>
+                        <div class="login-form">
+                            @if (ViewBag.CourseId != null)
+                            {
+                                <div>@ViewBag.CourseId</div>
+                            }
+                        <form asp-action="requestcourse" asp-controller="course" asp-route-courseId="@ViewBag.CourseId" method="post">
+
+
+                            <input asp-for="@Model.Address" placeholder="Address">
+                            <span class="text-danger" asp-validation-for="@Model.Address"></span>
+                            <input asp-for="@Model.ContactPhone" placeholder="ContactPhone">
+                            <span class="text-danger" asp-validation-for="@Model.ContactPhone"></span>
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <!--<div class="button-box">-->
+                            @*<div class="login-toggle-btn">
+            <input type="checkbox" id="remember">
+            <label for="remember">Remember me</label>
+            <a href="#">Forgot Password?</a>
+        </div>*@
+                            <button type="submit" class="default-btn">Send Request for Course</button>
+                            @*</div>*@
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Register end -->

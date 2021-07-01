@@ -1,0 +1,104 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using EduHome.Models
+@model Setting
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="form-group col-md-8">
+                <label asp-for="@Model.QuestionNumber">Title</label>
+                <input type="text" asp-for="@Model.QuestionNumber" class="form-control" id="title" placeholder="Title">
+                <span asp-validation-for="@Model.QuestionNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="@Model.Address">Address</label>
+                <input asp-for="@Model.Address" class="form-control" rows="3"></input>
+                <span asp-validation-for="@Model.Address" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.FacebookUrl">FacebookUrl</label>
+                <input asp-for="@Model.FacebookUrl" class="form-control " id="Subtitle" rows="3"></input>
+                <span asp-validation-for="@Model.FacebookUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.PinterestUrl">PinterestUrl</label>
+                <input asp-for="@Model.PinterestUrl" class="form-control " rows="3"></input>
+                <span asp-validation-for="@Model.PinterestUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.VimeUrl">VimeUrl</label>
+                <input asp-for="@Model.VimeUrl" class="form-control " rows="3"></input>
+                <span asp-validation-for="@Model.VimeUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.TwitterUrl">TwitterUrl</label>
+                <input asp-for="@Model.TwitterUrl" class="form-control " rows="3"></input>
+                <span asp-validation-for="@Model.TwitterUrl" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.PhoneNumber1">PhoneNumber1</label>
+                <input asp-for="@Model.PhoneNumber1" class="form-control " rows="3"></input>
+                <span asp-validation-for="@Model.PhoneNumber1" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.PhoneNumber2">PhoneNumber2</label>
+                <input asp-for="@Model.PhoneNumber2" class="form-control " rows="3"></input>
+                <span asp-validation-for="@Model.PhoneNumber2" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.Mail">Mail</label>
+                <input asp-for="@Model.Mail" class="form-control " rows="3"></input>
+                <span asp-validation-for="@Model.Mail" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.WebSite">WebSite</label>
+                <input asp-for="@Model.WebSite" class="form-control " rows="3"></input>
+                <span asp-validation-for="@Model.WebSite" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="@Model.Latitude">Latitude</label>
+            <input asp-for="@Model.Latitude" class="form-control " rows="3"></input>
+            <span asp-validation-for="@Model.Latitude" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="@Model.Longitude">Longitude</label>
+            <input asp-for="@Model.Longitude" class="form-control " rows="3"></input>
+            <span asp-validation-for="@Model.Longitude" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-3">
+            <label asp-for="@Model.VideoUrl">VideoUrl</label>
+            <input asp-for="@Model.VideoUrl" class="form-control " rows="3"></input>
+            <span asp-validation-for="@Model.VideoUrl" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="form-group w-100">
+                <label asp-for="@Model.FooterText">FooterText</label>
+                <textarea asp-for="@Model.FooterText" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="@Model.FooterText" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.HeaderFile">HeaderFile</label>
+            <input asp-for="@Model.HeaderFile" class="form-control col-md-2" rows="3"></input>
+            <span asp-validation-for="@Model.HeaderFile" class="text-danger"></span>
+        </div>
+        <div class="form-group mt-3">
+            <label asp-for="@Model.FooterFile">FooterFile</label>
+            <input asp-for="@Model.FooterFile" class="form-control col-md-2" rows="3"></input>
+            <span asp-validation-for="@Model.FooterFile" class="text-danger"></span>
+        </div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <button type="submit" class="btn btn-primary m-3">Submit</button>
+    </form>
+
+</div>

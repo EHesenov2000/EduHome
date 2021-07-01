@@ -1,0 +1,24 @@
+﻿@using EduHome.ViewModels
+@using EduHome.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<Course>
+@foreach (var item in Model.Skip(Model.Count - 3).Take(3))
+{
+    <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="single-course">
+            <div class="course-img">
+                <a asp-action="detail" asp-controller="course" asp-route-id="@item.Id">
+                    <img src="~/uploads/course/@item.Image" alt="course">
+                    <div class="course-hover">
+                        <i class="fa fa-link"></i>
+                    </div>
+                </a>
+            </div>
+            <div class="course-content">
+                <h3><a asp-action="detail" asp-controller="course" asp-route-id="@item.Id">@item.Category.Name</a></h3>
+                <p>@item.Context</p>
+                <a class="default-btn" asp-action="detail" asp-controller="course" asp-route-id="@item.Id">read more</a>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,195 @@
+﻿@using EduHome.Models
+@using EduHome.ViewModels
+@model HomeViewModel 
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+
+<!-- Background Area Start -->
+<section id="slider-container" class="slider-area three">
+    <div class="slider-owl owl-theme owl-carousel">
+        @foreach (var item in Model.Sliders)
+        {
+        <div class="single-slide item" style="background-image: url(@Html.Raw("/uploads/slider/"+@item.BackgroundImage)  )">
+            <!-- Start Slider Content -->
+            <div class="slider-content-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="slide-content-wrapper">
+                                <div class="slide-content">
+                                    <h2>@item.Title </h2>
+                                    <p>@item.Context </p>
+                                    <a class="default-btn" href="about.html">Learn more</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="slider-img">
+                                <img src="~/uploads/slider/@item.OverImage" alt="slider">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</section>
+<!-- Background Area End -->
+<!-- Courses Area Start -->
+<div class="courses-area pt-150 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="section-title">
+                    <img src="~/img/icon/section.png" alt="section-title">
+                    <h2>COURSES WE OFFER</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @await Html.PartialAsync("CoursesWeOfferPartial",Model.Courses)
+        </div>
+    </div>
+</div>
+<!-- Courses Area End -->
+
+<!-- Notice Start -->
+<section class="notice-area two three pt-140 pb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="notice-right-wrapper mb-25 pb-25">
+                    <h3>TAKE A VIDEO TOUR</h3>
+                    <div class="notice-video">
+                        <div class="video-icon video-hover">
+                            <a class="video-popup" href="@Model.Settings[0].VideoUrl">
+                                <i class="zmdi zmdi-play"></i>
+                            </a>
+                            class: videorl context datetime
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="notice-left-wrapper">
+                    <h3>notice board</h3>
+                    <div class="notice-left">
+                        @{int count = 0; }
+                        @foreach (var item in Model.NoticeBoardItems)
+                            {
+                                count++;
+                            <div class="single-notice-left mb-23 pb-20">
+                                <h4>@count, @item.CreatedAt.ToString("MMMM  yyyy")</h4>
+                                <p>@item.Text</p>
+                            </div>
+                            }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Notice End -->
+<!-- About Start -->
+<div class="about-area pb-135 pt-130 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="about-content">
+                    @{
+                        int a = Model.AboutEduHomeForHomePage.Title.IndexOf(" ");
+                        int b = Model.AboutEduHomeForHomePage.Title.Length - a;
+                    }
+                    <h2><span>@Model.AboutEduHomeForHomePage.Title.Substring(0, a + 1)</span> @Model.AboutEduHomeForHomePage.Title.Substring(a + 1, b - 1)</h2>
+                    <p>@Model.AboutEduHomeForHomePage.Text</p>
+                    <a class="default-btn" href="about.html">buy now</a>
+                </div>
+            </div>
+            <style>
+                .about-img:after {
+                    height:500px;
+                }
+            </style>
+            <div class="col-md-6 col-sm-6">
+                <div class="about-img">
+                    <img src="~/uploads/aboutEduHome/@Model.AboutEduHomeForHomePage.Image" alt="about" style="width:100%;height:500px !important">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+<!-- Event Area Start -->
+<div class="event-area three text-center pt-100 pb-115">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="section-title">
+                    <img src="img/icon/section.png" alt="section-title">
+                    <h2>UPCOMMING EVENTS</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @await Html.PartialAsync("UpComingPartial",Model.Events)
+        </div>
+    </div>
+</div>
+<!-- Event Area End -->
+<!-- Testimonial Area Start -->
+<div class="testimonial-area three pt-110 pb-105 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="testimonial-owl owl-theme owl-carousel">
+                @foreach (var item in Model.Testimonials)
+                {
+                    <div class="col-md-8 col-md-offset-2 col-sm-12">
+                        <div class="single-testimonial">
+                            <div class="testimonial-info">
+                                <div class="testimonial-img">
+                                    <img src="~/uploads/testimonial/@item.Image" alt="testimonial">
+                                </div>
+                                <div class="testimonial-content">
+                                    <p>@item.Text</p>
+                                    <h4>@item.FullName</h4>
+                                    <h5>@item.Position</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Testimonial Area End -->
+<!-- Blog Area Start -->
+<div class="blog-area pt-150 pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="section-title text-center">
+                    <img src="img/icon/section.png" alt="section-title">
+                    <h2>LATEST FROM BLOG</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @await Html.PartialAsync("LatestFromBlogPartial",Model.Events) 
+
+        </div>
+    </div>
+</div>
+<!-- Blog Area End -->

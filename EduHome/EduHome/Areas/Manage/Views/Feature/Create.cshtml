@@ -1,0 +1,57 @@
+﻿@*@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using EduHome.Models
+@model Feature
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.StartDate">StartDate</label>
+                <input type="text" asp-for="@Model.StartDate" class="form-control" id="StartDate">
+                <span asp-validation-for="@Model.StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.CourseDuration">CourseDuration</label>
+                <input asp-for="@Model.CourseDuration" class="form-control" id="CourseDuration" rows="3"></input>
+                <span asp-validation-for="@Model.CourseDuration" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.ClassDuration">ClassDuration</label>
+                <input asp-for="@Model.ClassDuration" class="form-control " rows="3"></input>
+                <span asp-validation-for="@Model.ClassDuration" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.SkillLevel">SkillLevel</label>
+                <input asp-for="@Model.SkillLevel" class="form-control " rows="3"></input>
+                <span asp-validation-for="@Model.SkillLevel" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.Language">Language</label>
+                <input asp-for="@Model.Language" class="form-control " rows="3"></input>
+                <span asp-validation-for="@Model.Language" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.StudentsCount">StudentsCount</label>
+                <input asp-for="@Model.StudentsCount" class="form-control " rows="3"></input>
+                <span asp-validation-for="@Model.StudentsCount" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.Assesment">Assesment</label>
+                <input asp-for="@Model.Assesment" class="form-control" rows="3"></input>
+                <span asp-validation-for="@Model.Assesment" class="text-danger"></span>
+            </div>
+        </div>
+        <div asp-validation-summary="ModelOnly"></div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>*@
+
+

@@ -1,0 +1,36 @@
+﻿@using EduHome.Models
+@model Slider
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="@Model.Title">Title</label>
+            <input type="text" asp-for="@Model.Title" class="form-control" id="title" placeholder="Title">
+            <span asp-validation-for="@Model.Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Context">Context</label>
+            <textarea asp-for="@Model.Context" class="form-control" id="Subtitle" rows="3"></textarea>
+            <span asp-validation-for="@Model.Context" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.BackgroundFile">BackgroundImage</label>
+            <input asp-for="@Model.BackgroundFile" class="form-control col-md-2" rows="3"></input>
+            <span asp-validation-for="@Model.BackgroundFile" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.OverFile">OverImage</label>
+            <input asp-for="@Model.OverFile" class="form-control col-md-2" rows="3"></input>
+            <span asp-validation-for="@Model.OverFile" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>

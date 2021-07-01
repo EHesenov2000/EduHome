@@ -1,0 +1,29 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using EduHome.Models
+@model Skill
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        <div class="row">
+
+            <div class="form-group col-md-8">
+                <label asp-for="@Model.Name ">Name</label>
+                <input type="text" asp-for="@Model.Name" class="form-control" id="Name">
+                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="@Model.Percent">Percent</label>
+            <input asp-for="@Model.Percent" class="form-control" id="Percent" rows="3">
+            <span asp-validation-for="@Model.Percent" class="text-danger"></span>
+        </div>
+        <div asp-validation-summary="ModelOnly"></div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>

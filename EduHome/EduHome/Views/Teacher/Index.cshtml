@@ -1,0 +1,132 @@
+﻿@using EduHome.Models
+@using EduHome.ViewModels
+@model List<Teacher>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Index";
+    int count;
+    if (ViewBag.SelectedPage == 1)
+    {
+        count = 0;
+    }
+    else
+    {
+        count = (ViewBag.SelectedPage - 1) * 8;
+    }
+}
+@{
+    int totalPage = (int)ViewBag.TotalPageCount;
+    int selectedPage = (int)ViewBag.SelectedPage;
+}
+
+
+
+<!-- Banner Area Start -->
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>our teachers</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Area End -->
+<!-- Teacher Start -->
+<div class="teacher-area pt-150 pb-105">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 col-sm-4 col-xs-12">
+                    <div class="single-teacher mb-45">
+                        <div class="single-teacher-img">
+                            <a asp-action="detail" asp-controller="teacher" asp-route-id="@item.Id"><img src="~/uploads/teacher/@item.Image" alt="teacher"></a>
+                        </div>
+                        <div class="single-teacher-content text-center">
+                            <h2><a asp-action="detail" asp-controller="teacher" asp-route-id="@item.Id">@item.FullName </a></h2>
+                            <h4>@item.Position</h4>
+                            <ul>
+                                <li><a href="@item.FacebookUrl"><i class="zmdi zmdi-facebook"></i></a></li>
+                                <li><a href="@item.PinterestUrl"><i class="zmdi zmdi-pinterest"></i></a></li>
+                                <li><a href="@item.VimeUrl"><i class="zmdi zmdi-vimeo"></i></a></li>
+                                <li><a href="@item.TwitterUrl"><i class="zmdi zmdi-twitter"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" asp-route-page="1">ilk</a></li>
+                <li class="page-item">
+                    <a class="page-link" asp-route-page="@(ViewBag.SelectedPage>1?ViewBag.SelectedPage-1:1)" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                @{
+                    int b;
+                    int s;
+                }
+                @if (selectedPage == 1)
+                {
+                    b = 1;
+                    if (totalPage >= 3)
+                    {
+                        s = 3;
+
+                    }
+                    else
+                    {
+                        s = totalPage;
+                    }
+                }
+                else if (selectedPage == totalPage)
+                {
+                    if (totalPage - 2 > 0)
+                    {
+                        b = totalPage - 2;
+
+                    }
+                    else if (totalPage - 1 > 0)
+                    {
+                        b = totalPage - 1;
+
+                    }
+                    else
+                    {
+                        b = totalPage;
+                    }
+                    s = totalPage;
+                }
+                else
+                {
+                    b = selectedPage - 1;
+                    s = selectedPage + 1;
+                }
+                @for (int i = b; i <= s; i++)
+                {
+                    <li class="page-item"><a class="page-link" asp-route-page="@i" style="@(i==selectedPage?"background-color:blue;color:white;":"")">@i</a></li>
+
+                }
+                <li class="page-item">
+                    <a class="page-link" asp-route-page="@(ViewBag.SelectedPage<ViewBag.TotalPageCount?ViewBag.SelectedPage+1:ViewBag.TotalPageCount)" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" asp-route-page="@ViewBag.TotalPageCount">son</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<!-- Teacher End -->

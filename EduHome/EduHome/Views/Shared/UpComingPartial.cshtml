@@ -1,0 +1,26 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using EduHome.Models
+@model List<Event>
+@foreach (var item in Model.OrderBy(x=>x.CreatedAt).Where(x=>x.CreatedAt>DateTime.UtcNow).Take(3))
+{
+    <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="single-event mb-35">
+            <div class="event-img">
+                <a asp-action="detail" asp-controller="event" asp-route-id="@item.Id"><img src="~/uploads/event/@item.Image" alt="event"></a>
+                <div class="event-date">
+                    <h3>@item.StartTime.ToString("dd") <span>@item.StartTime.ToString("MMM")</span></h3>
+                </div>
+            </div>
+            <div class="event-content text-left">
+                <h4><a asp-action="detail" asp-controller="event" asp-route-id="@item.Id">@item.Name</a></h4>
+                <ul>
+                    <li><span>time:</span> @item.StartTime.ToString("HH:mm tt") - @item.EndTime.ToString("HH:mm tt")</li>
+                    <li><span>venue:</span> @item.City</li>
+                </ul>
+                <div class="event-content-right">
+                    <a class="default-btn" asp-action="detail" asp-controller="event" asp-route-id="@item.Id">join now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

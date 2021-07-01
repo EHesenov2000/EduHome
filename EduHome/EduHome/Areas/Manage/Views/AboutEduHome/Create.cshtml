@@ -1,0 +1,36 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using EduHome.Models
+@model AboutEduHome
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="@Model.Title">Title</label>
+            <input type="text" asp-for="@Model.Title" class="form-control" id="Title" placeholder="Title">
+            <span asp-validation-for="@Model.Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Text">Text</label>
+            <textarea type="text" asp-for="@Model.Text" class="form-control" id="Text" placeholder="Text"></textarea>
+            <span asp-validation-for="@Model.Text" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.IsHome">IsHome</label>
+            <input asp-for="@Model.IsHome" class="form-control" id="IsHome" rows="3">
+            <span asp-validation-for="@Model.IsHome" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.ImageFile">Image</label>
+            <input asp-for="@Model.ImageFile" class="form-control col-md-2" rows="3"></input>
+            <span asp-validation-for="@Model.ImageFile" class="text-danger"></span>
+        </div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>

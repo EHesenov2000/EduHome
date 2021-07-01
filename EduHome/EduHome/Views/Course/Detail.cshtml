@@ -1,0 +1,235 @@
+﻿<!--@using EduHome.Models
+@using EduHome.ViewModels
+@model CourseDetailViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Detail";
+}-->
+
+<!-- Banner Area Start -->
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>courses details</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ @*Banner Area End*@ 
+ @*Blog Start*@ 
+<div class="courses-details-area blog-area pt-150 pb-140">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="courses-details">
+                    <div class="courses-details-img">
+                        <img src="~/uploads/course/@Model.Course.Image" alt="courses-details" style="width:100%;">
+                    </div>
+                    <div class="course-details-content">
+                        <h2>@Model.Course.Category.Name</h2>
+                        <p>@Model.Course.Context</p>
+                        <div class="course-details-left">
+                            <div class="single-course-left">
+                                <h3>about course</h3>
+                                <p>@Model.Course.About</p>
+                            </div>
+                            <div class="single-course-left">
+                                <h3>how to apply</h3>
+                                <p>@Model.Course.HowToApply</p>
+                            </div>
+                            <div class="single-course-left">
+                                <h3>certification</h3>
+                                <p class="margin">@Model.Course.Certification</p>
+                            </div>
+                        </div>
+                        <div class="course-details-right">
+                            <h3>COURSE FEATURES</h3>
+                            <ul>
+                                @foreach (var item in Model.Course.Features)
+                                {
+                                <li>@Model.Course.Features.FirstOrDefault(x => x.CourseId == Model.Course.Id).Name <span>@Model.Course.Features.FirstOrDefault(x => x.CourseId == Model.Course.Id).Value</span></li>
+
+                                }
+                            </ul>
+                            <h3 class="red">course fee $@Model.Course.Price</h3>
+                            <div data-id="@Model.Course.Id" class="for-join-course"></div>
+                            <div class="text-center   join-course-section">
+                                @try
+                                {
+                                    @if (User.Identity.IsAuthenticated && Model.Requests != null)
+                                    {
+                                        @if (Model.Requests.FirstOrDefault(x => x.CourseId == Model.Course.Id && x.AppUser.UserName == User.Identity.Name).Status.ToString() == "Pending")
+                                        {
+                                            <a class="btn btn-primary Pending">Pending</a>
+
+                                        }
+                                        else if (Model.Requests.FirstOrDefault(x => x.CourseId == Model.Course.Id && x.AppUser.UserName == User.Identity.Name).Status.ToString() == "Accepted")
+                                        {
+                                            <a class="btn btn-primary Accepted">Accepted</a>
+
+                                        }
+                                        else if (Model.Requests.FirstOrDefault(x => x.CourseId == Model.Course.Id && x.AppUser.UserName == User.Identity.Name).Status.ToString() == "AdminReject")
+                                        {
+                                            @*if (DateTime.UtcNow > Model.Requests.FirstOrDefault(x => x.CourseId == Model.Course.Id && x.AppUser.UserName == User.Identity.Name).RequestDate.AddMonths(6))
+                                            {
+                                                <a asp-action="requestcourse" asp-controller="course" asp-route-id="@Model.Course.Id" class="btn btn-primary Join" style="font:bold; margin-top:20px;width:100px;font-size:20px">Join</a>
+                                            }
+                                            else
+                                            {*@
+                                                <a class="btn btn-primary Rejected">Rejected</a>
+                                                <div>@Model.Requests.FirstOrDefault(x => x.CourseId == Model.Course.Id && x.AppUser.UserName == User.Identity.Name).RequestDate.AddMonths(6).ToString("MMMM dd,yyyy - HH:mm") tarixnden sonra yeniden muraciet ede bilersiz</div>
+
+                                            //}
+                                        }
+                                        else if (Model.Requests.FirstOrDefault(x => x.CourseId == Model.Course.Id && x.AppUser.UserName == User.Identity.Name).Status.ToString() == "UserReject")
+                                        {
+                                            <a asp-action="requestcourse" asp-controller="course" asp-route-id="@Model.Course.Id" class="btn btn-primary Join" style="font:bold; margin-top:20px;width:100px;font-size:20px">Join</a>
+
+                                        }
+
+                                        else
+                                        {
+                                            <a  class="btn btn-primary Join" style="font:bold; margin-top:20px;width:100px;font-size:20px">Blocked</a>
+                                        }
+                                    }
+                                }
+                                catch (Exception)
+                                {
+
+                                    <a asp-action="requestcourse" asp-controller="course" asp-route-id="@Model.Course.Id" class="btn btn-primary Join" style="font:bold; margin-top:20px;width:100px;font-size:20px">Join</a>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comments">
+                        <h1 class="m-4 text-danger" style="font-size:23px">** COMMENTS **</h1>
+                        @if (Model.Course.CourseComments != null)
+                        {
+                            @await Html.PartialAsync("_CourseComments", Model.Course.CourseComments.OrderByDescending(x => x.CreatedAt).Take(2).ToList())
+                            @if (Model.Course.CourseComments.Count() > 2)
+                            {
+                                <div style="">
+                                    <div style="display: flex; justify-content: center; align-items: center;">
+                                        <a class="load-comments" data-totalpage="@ViewBag.TotalCommentPage" style="color:white;background-color:red;color:white;width:100px;padding:5px;text-align:center;border-radius:26px " asp-action="LoadComment" data-nextPage="2" asp-route-id="@Model.Course.Id">
+                                            Load more
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+
+                    <div class="reply-area">
+                        <h3>LEAVE A REPLY</h3>
+                        <p>I must explain to you how all this a mistaken idea of ncing great explorer of the rut<br> the is lder of human happinescias unde omnis iste natus error sit volptatem </p>
+                        <form id="contact-form" asp-action="AddComment" asp-controller="course" method="post">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>Massage</p>
+                                    <textarea name="Text" id="message" cols="15" rows="10"></textarea>
+                                </div>
+                                <input type="hidden" name="CourseId" value="@Model.Course.Id" />
+                            </div>
+                            <button class="reply-btn" type="submit"><span>send message</span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="blog-sidebar right">
+                    <div class="single-blog-widget mb-50">
+                        <h3>search</h3>
+                        <div class="blog-search">
+                            <form id="search" action="#">
+                                <input type="search" placeholder="Search..." name="search" />
+                                <button type="submit">
+                                    <span><i class="fa fa-search"></i></span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="single-blog-widget mb-50">
+                        <h3>categories</h3>
+                        <ul>
+                            @foreach (var item in Model.Categories)
+                            {
+                                <li><a asp-action="index" asp-controller="course" asp-route-categoryId="@item.Id">@item.Name (@item.Courses.Count())</a></li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="single-blog-widget mb-50">
+                        <div class="single-blog-banner">
+                            <a href="blog-details.html" id="blog"><img src="~/img/blog/blog-img.jpg" alt="blog"></a>
+                            <h2>best<br> eductaion<br> theme</h2>
+                        </div>
+                    </div>
+                    <div class="single-blog-widget mb-50">
+                        <h3>latest post</h3>
+                        <div class="single-post mb-30">
+                            <div class="single-post-img">
+                                <a href="blog-details.html">
+                                    <img src="~/img/post/post1.jpg" alt="post">
+                                    <div class="blog-hover">
+                                        <i class="fa fa-link"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="single-post-content">
+                                <h4><a href="blog-details.html">English Language Course for you</a></h4>
+                                <p>By Alex  /  June 20, 2017</p>
+                            </div>
+                        </div>
+                        <div class="single-post mb-30">
+                            <div class="single-post-img">
+                                <a href="blog-details.html">
+                                    <img src="~/img/post/post2.jpg" alt="post">
+                                    <div class="blog-hover">
+                                        <i class="fa fa-link"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="single-post-content">
+                                <h4><a href="blog-details.html">Advance Web Design and Develop</a></h4>
+                                <p>By Alex  /  June 20, 2017</p>
+                            </div>
+                        </div>
+                        <div class="single-post">
+                            <div class="single-post-img">
+                                <a href="blog-details.html">
+                                    <img src="~/img/post/post3.jpg" alt="post">
+                                    <div class="blog-hover">
+                                        <i class="fa fa-link"></i>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="single-post-content">
+                                <h4><a href="blog-details.html">English Language Course for you</a></h4>
+                                <p>By Alex  /  June 20, 2017</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-blog-widget">
+                        <h3>tags</h3>
+                        <div class="single-tag">
+                            @foreach (var item in Model.Course.CourseTags)
+                            {
+                                <a href="blog-details.html" class="mr-10 mb-10">@item.Tag.Name</a>
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blog End -->

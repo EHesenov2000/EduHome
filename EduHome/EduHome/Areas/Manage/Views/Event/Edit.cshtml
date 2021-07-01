@@ -1,0 +1,96 @@
+﻿@using EduHome.Models
+@model Event
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+    List<Teacher> teachers = (List<Teacher>)ViewBag.Teachers;
+    List<Tag> tags = (List<Tag>)ViewBag.Tags;
+}
+
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="@Model.Name">Name</label>
+            <input type="text" asp-for="@Model.Name" class="form-control" id="Name" placeholder="Name">
+            <span asp-validation-for="@Model.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.StartTime">StartTime</label>
+            <input asp-for="@Model.StartTime" class="form-control" id="StartTime" rows="3">
+            <span asp-validation-for="@Model.StartTime" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.EndTime">EndTime</label>
+            <input asp-for="@Model.EndTime" class="form-control " rows="3">
+            <span asp-validation-for="@Model.EndTime" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.City">City</label>
+            <input asp-for="@Model.City" class="form-control " rows="3">
+            <span asp-validation-for="@Model.City" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.CreatedAt">CreatedAt</label>
+            <input asp-for="@Model.CreatedAt" class="form-control " rows="3">
+            <span asp-validation-for="@Model.CreatedAt" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.About">About</label>
+            <input asp-for="@Model.About" class="form-control " rows="3">
+            <span asp-validation-for="@Model.About" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.TagIds">Tags</label>
+            <select class="form-control" asp-for="@Model.TagIds">
+                @if (tags != null)
+                {
+                    @foreach (var item in tags)
+                    {
+                        if (Model.EventTags.Any(x => x.TagId == item.Id))
+                        {
+                            <option selected value="@item.Id">@item.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    }
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.TeacherIds">Teachers</label>
+            <select class="form-control" asp-for="@Model.TeacherIds">
+                @if (teachers != null)
+                {
+                    @foreach (var item in teachers)
+                    {
+                        if (Model.EventTeachers.Any(x => x.TeacherId == item.Id))
+                        {
+                            <option selected value="@item.Id">@item.FullName</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Id">@item.FullName</option>
+                        }
+                    }
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.ImageFile">ImageFile</label>
+            <input asp-for="@Model.ImageFile" class="form-control col-md-2" rows="3">
+            <span asp-validation-for="@Model.ImageFile" class="text-danger"></span>
+        </div>
+        <div class="img-box" style="position:relative;max-width:200px;background-color:black;width:200px;height:200px;max-height:200px;">
+            <img class="d-block" src="~/uploads/event/@Model.Image" style="max-width:180px;width:180px;height:180px;max-height:180px;margin-left:10px;padding-top:20px" />
+            <i class="fas fa-times remove-img-box" style="color:red;position:absolute;cursor:pointer;right:4px;top:2px;font-size:17px"></i>
+            <input type="hidden" name="OverImage" value="@Model.Image" />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>

@@ -1,0 +1,14 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using EduHome.Models
+@model List<Event>
+@foreach (var item in Model)
+{
+<a asp-action="detail" asp-controller="event" asp-route-id="@item.Id">
+    <li type="none">
+        <div class="search-form" style="background-color:red !important;width:300px;height:50px;margin-left:10px;display:flex;align-items:center">
+            <img src="~/uploads/teacher/@item.Image" alt="Alternate Text" style="width:50px;height:40px;float:left;border-radius:50%;padding:5px" />
+            <span style="float:left;margin-left:10px;color:white;align-items:center"> @item.CreatedAt.ToString("dd MMMM,yyyy")</span>
+        </div>
+    </li>
+</a>
+}

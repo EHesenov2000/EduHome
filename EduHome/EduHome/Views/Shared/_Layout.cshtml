@@ -1,0 +1,316 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using EduHome.Services
+@using EduHome.Models
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.EntityFrameworkCore
+@inject LayoutViewModelService service
+@inject UserManager<AppUser> usernamager
+@{
+    Setting setting = service.GetSetting();
+    AppUser user = null;
+    if (User.Identity.IsAuthenticated)
+    {
+        user = await usernamager.Users.FirstOrDefaultAsync(x => x.UserName == User.Identity.Name && !x.IsAdmin);
+    }
+}
+
+<!doctype html>
+<html class="no-js" lang="en">
+
+<!-- Mirrored from demo.devitems.com/eduhome/index-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 21 Jun 2020 19:45:14 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Eduhome - Educational HTML Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/animate.css">
+    <link rel="stylesheet" href="~/css/meanmenu.css">
+    <link rel="stylesheet" href="~/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/et-line-icon.css">
+    <link rel="stylesheet" href="~/css/reset.css">
+    <link rel="stylesheet" href="~/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/responsive.css">
+    <script src="~/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Header Area Start -->
+    <header class="top">
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <div class="header-top-left">
+                            <p>HAVE ANY QUESTION ?  @setting.QuestionNumber</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="header-top-right text-right">
+                            <ul>
+                                @if (user == null)
+                                {
+                                    <li><a asp-action="login" asp-controller="account">login</a></li>
+                                    <li><a asp-action="register" asp-controller="account">signup</a></li>
+                                }
+                                else
+                                {
+                                    <li><a asp-action="GetCourses" asp-controller="course" asp-route-userId="@user.Id">MyCourses</a></li>
+                                    <li><a asp-action="edit" asp-controller="account">@user.FullName</a></li>
+                                    <li><a asp-action="logout" asp-controller="account">logout</a></li>
+                                }
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-area two header-sticky">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-6">
+                        <div class="logo">
+                            <a href="index.html"><img src="~/uploads/setting/@setting.HeaderLogo" alt="eduhome" style="width:200px;height:100px" /></a>
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-6">
+                        <div class="content-wrapper text-right">
+                            <!-- Main Menu Start -->
+                            <div class="main-menu">
+                                <nav>
+                                    <ul>
+                                        <li><a asp-action="index" asp-controller="home">Home</a></li>
+                                        <li><a asp-action="index" asp-controller="about">About</a></li>
+                                        <li><a asp-action="index" asp-controller="course">courses</a></li>
+                                        <li><a asp-action="index" asp-controller="event">event</a></li>
+                                        <li class="hidden-sm"><a asp-action="index" asp-controller="teacher">teacher</a></li>
+                                        <li>
+                                            <a href="blog.html">blog</a>
+                                            <ul>
+                                                <li><a href="blog.html">blog</a></li>
+                                                <li><a href="blog-left-side-bar.html">blog left sidebar</a></li>
+                                                <li><a href="blog-right-side-bar.html">blog righ sidebar</a></li>
+                                                <li><a href="blog-details.html">blog details</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a asp-action="index" asp-controller="contact">Contact</a></li>
+                                        <li><a href="#">Buy Now</a>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <!--Search Form Start-->
+                            <div class="search-btn">
+                                <ul data-toggle="dropdown" class="header-search search-toggle">
+                                    <li class="search-menu">
+                                        <i class="fa fa-search"></i>
+                                    </li>
+                                </ul>
+                                <div class="search">
+                                    <div class="search-form">
+                                        <form id="search-form" method="get">
+                                            <input type="search" placeholder="Search here..." name="search" class="event-value" />
+                                            <button type="submit" class="event-search">
+                                                <span><i class="fa fa-search"></i></span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <ul class="partial-viewComing">
+                                        @*partial coming here*@
+                                    </ul>
+
+                                </div>
+                            </div>
+                            <!--End of Search Form-->
+                            <!-- Main Menu End -->
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="mobile-menu hidden-lg hidden-md hidden-sm"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header Area End -->
+
+
+    @RenderBody()
+    <!-- Subscribe Start -->
+    <div class="subscribe-area pt-58 pb-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="subscribe-content section-title text-center">
+                        <h2>subscribe our newsletter</h2>
+                        <p>I must explain to you how all this mistaken idea </p>
+                    </div>
+
+                    <div class="newsletter-form mc_embed_signup">
+                        <form method="post" asp-action="addsubscribe" asp-controller="home">
+                            <div id="mc_embed_signup_scroll" class="mc-form">
+                                <label asp-for="@service.Take().Email"></label>
+                                <input asp-for="@service.Take().Email" placeholder="Enter your e-mail address">
+                                <span asp-validation-for="@service.Take().Email"></span>
+                                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                <button class="default-btn" type="submit" style="bottom:1px !important;top:unset"><span>subscribe</span></button>
+                            </div>
+                        </form>
+                        <!-- mailchimp-alerts Start -->
+                        <!--<div class="mailchimp-alerts">
+        <div class="mailchimp-submitting"></div>-->
+                        <!-- mailchimp-submitting end -->
+                        <!--<div class="mailchimp-success"></div>--><!-- mailchimp-success end -->
+                        <!--<div class="mailchimp-error"></div>--><!-- mailchimp-error end -->
+                        <!--</div>-->
+                        <!-- mailchimp-alerts end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Subscribe End -->
+    <!-- Footer Start -->
+    <footer class="footer-area">
+        <div class="main-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="single-widget pr-60">
+                            <div class="footer-logo pb-25">
+                                <a href="index.html"><img src="~/uploads/setting/@setting.FooterLogo" alt="eduhome" style="width:200px;height:100px"></a>
+                            </div>
+                            <p>@setting.FooterText</p>
+                            <div class="footer-social">
+                                <ul>
+                                    <li><a href="@setting.FacebookUrl"><i class="zmdi zmdi-facebook"></i></a></li>
+                                    <li><a href="@setting.PinterestUrl"><i class="zmdi zmdi-pinterest"></i></a></li>
+                                    <li><a href="@setting.VimeUrl"><i class="zmdi zmdi-vimeo"></i></a></li>
+                                    <li><a href="@setting.TwitterUrl"><i class="zmdi zmdi-twitter"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-widget">
+                            <h3>information</h3>
+                            <ul>
+                                <li><a href="#">addmission</a></li>
+                                <li><a href="#">Academic Calender</a></li>
+                                <li><a href="event.html">Event List</a></li>
+                                <li><a href="#">Hostel &amp; Dinning</a></li>
+                                <li><a href="#">TimeTable</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6 col-xs-12">
+                        <div class="single-widget">
+                            <h3>useful links</h3>
+                            <ul>
+                                <li><a href="course.html">our courses</a></li>
+                                <li><a href="about.html">about us</a></li>
+                                <li><a href="teacher.html">teachers &amp; faculty</a></li>
+                                <li><a href="#">teams &amp; conditions</a></li>
+                                <li><a href="event.html">our events</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="single-widget">
+                            <h3>get in touch</h3>
+                            <p>Your address goes here,<br>@setting.Address</p>
+                            <p>@setting.PhoneNumber1<br>@setting.PhoneNumber2</p>
+                            <p>@setting.Mail<br>@setting.WebSite</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p>Copyright © <a href="#" target="_blank">HasTech</a> 2017. All Right Reserved By Hastech.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cordinatlar" data-id1="@setting.Latitude" data-id2="@setting.Longitude"></div>
+    </footer>
+    <!-- Footer End -->
+
+    <script src="~/js/vendor/jquery-1.12.0.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.meanmenu.js"></script>
+    <script src="~/js/jquery.magnific-popup.js"></script>
+    <script src="~/js/ajax-mail.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/jquery.mb.YTPlayer.js"></script>
+    <script src="~/js/jquery.nicescroll.min.js"></script>
+    <script src="~/js/plugins.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/js/NewMain.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSLSFRa0DyBj9VGzT7GM6SFbSMcG0YNBM"></script>
+    <script type="text/javascript">
+        google.maps.event.addDomListener(window, 'load', init);
+        function init() {
+            var a = $(".cordinatlar").attr("data-id1");
+            var b = $(".cordinatlar").attr("data-id2");
+            var mapOptions = {
+                zoom: 11,
+                center: new google.maps.LatLng(a, b), // New York
+                styles: [{ "featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#e9e9e9" }, { "lightness": 17 }] }, { "featureType": "landscape", "elementType": "geometry", "stylers": [{ "color": "#f5f5f5" }, { "lightness": 20 }] }, { "featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{ "color": "#ffffff" }, { "lightness": 17 }] }, { "featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "color": "#ffffff" }, { "lightness": 29 }, { "weight": 0.2 }] }, { "featureType": "road.arterial", "elementType": "geometry", "stylers": [{ "color": "#ffffff" }, { "lightness": 18 }] }, { "featureType": "road.local", "elementType": "geometry", "stylers": [{ "color": "#ffffff" }, { "lightness": 16 }] }, { "featureType": "poi", "elementType": "geometry", "stylers": [{ "color": "#f5f5f5" }, { "lightness": 21 }] }, { "featureType": "poi.park", "elementType": "geometry", "stylers": [{ "color": "#dedede" }, { "lightness": 21 }] }, { "elementType": "labels.text.stroke", "stylers": [{ "visibility": "on" }, { "color": "#ffffff" }, { "lightness": 16 }] }, { "elementType": "labels.text.fill", "stylers": [{ "saturation": 36 }, { "color": "#333333" }, { "lightness": 40 }] }, { "elementType": "labels.icon", "stylers": [{ "visibility": "off" }] }, { "featureType": "transit", "elementType": "geometry", "stylers": [{ "color": "#f2f2f2" }, { "lightness": 19 }] }, { "featureType": "administrative", "elementType": "geometry.fill", "stylers": [{ "color": "#fefefe" }, { "lightness": 20 }] }, { "featureType": "administrative", "elementType": "geometry.stroke", "stylers": [{ "color": "#fefefe" }, { "lightness": 17 }, { "weight": 1.2 }] }]
+            };
+            var mapElement = document.getElementById('googleMap');
+            var map = new google.maps.Map(mapElement, mapOptions);
+            var marker = new google.maps.Marker({
+                position: map.getCenter(),
+                animation: google.maps.Animation.BOUNCE,
+                icon: 'img/map-marker.png',
+                map: map
+            });
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(".event-value").keyup(function (e) {
+                e.preventDefault();
+                if (this.value) {
+                    var value = this.value;
+                    console.log(value);
+                    console.log('https://localhost:44360/event?eventpartial=' + "" + value);
+
+                    fetch('https://localhost:44360/event/eventpartial?search=' + "" + value)
+                        .then(response => response.text())
+                        .then(data =>
+
+                            $(".partial-viewComing").html(data)
+
+                        )
+                }
+                else {
+                    $(".partial-viewComing").empty();
+
+                }
+
+
+            })
+
+        })
+    </script>
+</body>
+
+<!-- Mirrored from demo.devitems.com/eduhome/about.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 21 Jun 2020 19:45:26 GMT -->
+</html>

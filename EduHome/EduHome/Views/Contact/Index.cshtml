@@ -1,0 +1,105 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using EduHome.ViewModels
+@model ContactAndSettingViewModel  
+@{
+    ViewData["Title"] = "Index";
+}
+<!-- Banner Area Start -->
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>contact</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Area End -->
+<!-- Contact Start -->
+<div class="map-area">
+    <!-- google-map-area start -->
+    <div class="google-map-area">
+        <!--  Map Section -->
+        <div id="contacts" class="map-area">
+            <div id="googleMap" style="width:100%;height:440px;"></div>
+        </div>
+    </div>
+</div>
+<div class="contact-area pt-150 pb-140">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 col-sm-5 col-xs-12">
+                <div class="contact-contents text-center">
+                    <div class="single-contact mb-65">
+                        <div class="contact-icon">
+                            <img src="~/img/contact/contact1.png" alt="contact">
+                        </div>
+                        <div class="contact-add">
+                            <h3>Address</h3>
+                            <p>@Model.Setting.Address</p>
+                        </div>
+                    </div>
+                    <div class="single-contact mb-65">
+                        <div class="contact-icon">
+                            <img src="~/img/contact/contact2.png" alt="contact">
+                        </div>
+                        <div class="contact-add">
+                            <h3>Phone</h3>
+                            <p>@Model.Setting.PhoneNumber1</p>
+                            <p>@Model.Setting.PhoneNumber2</p>
+                        </div>
+                    </div>
+                    <div class="single-contact">
+                        <div class="contact-icon">
+                            <img src="~/img/contact/contact3.png" alt="contact">
+                        </div>
+                        <div class="contact-add">
+                            <h3>Coordinate</h3>
+                            <p>Latitude: @Model.Setting.Latitude</p>
+                            <p>Longitude: @Model.Setting.Longitude</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 col-sm-7 col-xs-12">
+                <div class="reply-area">
+                    <h3>LEAVE A message</h3>
+                    <p>I must explain to you how all this a mistaken idea of ncing great explorer of the rut the is lder of human happinescias unde omnis iste natus error sit volptatem </p>
+                    <form  asp-action="getcontact" asp-controller="contact" method="post">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label asp-for="@Model.Contact.Name">Name</label>
+                                <input type="text" asp-for="@Model.Contact.Name" class="form-control" placeholder="Name">
+                                <span asp-validation-for="@Model.Contact.Name" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-12">
+                                <label asp-for="@Model.Contact.Email">Email</label>
+                                <input type="text" asp-for="@Model.Contact.Email" class="form-control" placeholder="Email">
+                                <span asp-validation-for="@Model.Contact.Email" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-12">
+                                <label asp-for="@Model.Contact.Subject">Subject</label>
+                                <input type="text" asp-for="@Model.Contact.Subject" class="form-control" placeholder="Subject">
+                                <span asp-validation-for="@Model.Contact.Subject" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-12">
+                                <label asp-for="@Model.Contact.Message">Message</label>
+                                <textarea type="text" asp-for="@Model.Contact.Message" class="form-control" rows="10" placeholder="Message"></textarea>
+                                <span asp-validation-for="@Model.Contact.Message" class="text-danger"></span>
+                            </div>
+                        </div>
+                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <button type="submit" class="btn btn-primary">send message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->

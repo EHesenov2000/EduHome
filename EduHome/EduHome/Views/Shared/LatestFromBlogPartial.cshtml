@@ -1,0 +1,29 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using EduHome.Models
+@model List<Event>
+@using System.Globalization
+@foreach (var item in Model.OrderBy(x => x.CreatedAt).Skip(Model.Count - 3).Take(3))
+{
+    <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="single-blog">
+            <div class="blog-img">
+                <a asp-action="detail" asp-controller="event" asp-route-id="@item.Id"><img src="~/uploads/event/@item.Image" alt="blog"></a>
+                <div class="blog-hover">
+                    <a asp-action="detail" asp-controller="event" asp-route-id="@item.Id"><i class="fa fa-link"></i></a>
+                </div>
+            </div>
+            <div class="blog-content">
+                <div class="blog-top">
+                    @{ 
+                        CultureInfo English = new CultureInfo("en-US");
+                    }
+                    <p>By Alex  / @item.CreatedAt.ToString("MMMM dd, yyyy",English) /  <i class="fa fa-comments-o"></i> 4</p>
+                </div>
+                <div class="blog-bottom">
+                    <h2><a asp-action="detail" asp-controller="event" asp-route-id="@item.Id">@item.Name </a></h2>
+                    <a asp-action="detail" asp-controller="event" asp-route-id="@item.Id">read more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

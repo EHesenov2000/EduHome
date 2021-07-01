@@ -1,0 +1,188 @@
+﻿@using EduHome.Models
+@model Teacher
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="@Model.FullName">FullName</label>
+            <input type="text" asp-for="@Model.FullName" class="form-control" id="FullName" placeholder="FullName">
+            <span asp-validation-for="@Model.FullName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Position">Position</label>
+            <input asp-for="@Model.Position" class="form-control" id="Position" rows="3">
+            <span asp-validation-for="@Model.Position" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.FacebookUrl">FacebookUrl</label>
+            <input asp-for="@Model.FacebookUrl" class="form-control " rows="3">
+            <span asp-validation-for="@Model.FacebookUrl" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.PinterestUrl">PinterestUrl</label>
+            <input asp-for="@Model.PinterestUrl" class="form-control " rows="3">
+            <span asp-validation-for="@Model.PinterestUrl" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.VimeUrl">VimeUrl</label>
+            <input asp-for="@Model.VimeUrl" class="form-control " rows="3">
+            <span asp-validation-for="@Model.VimeUrl" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.TwitterUrl">TwitterUrl</label>
+            <input asp-for="@Model.TwitterUrl" class="form-control " rows="3">
+            <span asp-validation-for="@Model.TwitterUrl" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.About">About</label>
+            <textarea asp-for="@Model.About" class="form-control " rows="3"></textarea>
+            <span asp-validation-for="@Model.About" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Degree">Degree</label>
+            <input asp-for="@Model.Degree" class="form-control " rows="3">
+            <span asp-validation-for="@Model.Degree" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Experience">Experience</label>
+            <input asp-for="@Model.Experience" class="form-control " rows="3">
+            <span asp-validation-for="@Model.Experience" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Hobbies">Hobbies</label>
+            <input asp-for="@Model.Hobbies" class="form-control " rows="3">
+            <span asp-validation-for="@Model.Hobbies" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Faculty">Faculty</label>
+            <input asp-for="@Model.Faculty" class="form-control " rows="3">
+            <span asp-validation-for="@Model.Faculty" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Email">Email</label>
+            <input asp-for="@Model.Email" class="form-control " rows="3">
+            <span asp-validation-for="@Model.Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.PhoneNumber">PhoneNumber</label>
+            <input asp-for="@Model.PhoneNumber" class="form-control " rows="3">
+            <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.SkypeName">SkypeName</label>
+            <input asp-for="@Model.SkypeName" class="form-control " rows="3">
+            <span asp-validation-for="@Model.SkypeName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.ImageFile">ImageFile</label>
+            <input asp-for="@Model.ImageFile" class="form-control col-md-2" rows="3">
+            <span asp-validation-for="@Model.ImageFile" class="text-danger"></span>
+        </div>
+        <div class="img-box" style="position:relative;max-width:200px;background-color:black;width:200px;height:200px;max-height:200px;">
+            <img class="d-block" src="~/uploads/teacher/@Model.Image" style="max-width:180px;width:180px;height:180px;max-height:180px;margin-left:10px;padding-top:20px" />
+            <i class="fas fa-times remove-img-box" style="color:red;position:absolute;cursor:pointer;right:4px;top:2px;font-size:17px"></i>
+            <input type="hidden" name="OverImage" value="@Model.Image" />
+        </div>
+        <div class="form-row col-12" id="skills">
+            @{ int count = 0;
+                @foreach (var item in Model.Skills)
+                {
+            <div class="form-group col-12">
+                <label for="skillName">Skill name</label>
+                <input name="Skills[@count].Name" type="text" value="@item.Name" class="silecem"/>
+                <span class="text-danger"></span>
+
+                <label for="skillPercent"> Skill percent</label>
+                <input name="Skills[@count].Percent" type="text" value="@item.Percent" class="silecem" />
+                <span class="text-danger"></span>
+                <span><i class="fas fa-minus delete-skill"> </i></span>
+
+            </div>
+                    count++;
+                }
+            }
+        </div>
+
+        <div class="form-row justify-content-center">
+            <div class="form-group">
+                <button data-nextIndex="@Model.Skills.Count()" class="add-skill btn btn-primary">+</button>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $(document).on("click", ".add-skill", function (e) {
+                e.preventDefault();
+
+                var nextIndex = $(this).attr("data-nextIndex");
+
+                var inputGroup = ` <div class="form-group col-12" data-index="0">
+                    <label for="skillName">Skill name</label>
+                    <input name="Skills[`+ nextIndex + `].Name" type="text" />
+                    <span class="text-danger"></span>
+
+                    <label for="skillPercent"> Skill percent</label>
+                    <input name="Skills[`+ nextIndex + `].Percent" type="text" />
+                    <span class="text-danger"></span>
+                    <span><i class="fas fa-minus delete-skill"> </i></span>
+                </div>`
+
+                $("#skills").append($(inputGroup))
+
+                nextIndex = +nextIndex + 1;
+                console.log(nextIndex)
+
+                $(this).attr("data-nextIndex", nextIndex)
+            })
+
+            //$(document).on("click", ".delete-skill", function (e) {
+            //    e.preventDefault();
+            //    console.log("test");
+            //    $(".silecem").attr("name", "sagol");
+            //    //$(this).parents(".form-group").empty();
+            //})
+        })
+        for (var i = 0; i < document.getElementsByClassName("delete-skill").length; i++) {
+
+            document.getElementsByClassName("delete-skill")[i].onclick = function (e) {
+                e.preventDefault();
+                this.parentElement.parentElement.innerHTML = null;
+                console.log("salam qaqa");
+                for (var z = 0; z < document.getElementsByClassName("silecem").length; z += 2) {
+                    var count = 0;
+                    for (var t = 0;t < 2; t++) {
+                        var name = "Skills[" + (z/2) + "].Name";
+                        var percent = "Skills[" + (z/2) + "].Percent";
+                        document.getElementsByClassName("silecem")[z].setAttribute("name", name);
+                        document.getElementsByClassName("silecem")[z + 1].setAttribute("name", percent);
+                        count++;
+
+                    }
+                 
+
+
+                }
+
+
+
+
+            }
+
+        }
+
+
+    </script>
+}

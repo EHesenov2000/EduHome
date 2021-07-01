@@ -1,0 +1,19 @@
+﻿@using EduHome.Models
+@model List<CourseComment>
+@if (Model != null)
+{
+    @foreach (var comment in Model)
+    {
+        <hr />
+        <div class="review-comment mb--20">
+            <div class="text">
+                <h6 class="author">
+                    @comment.AppUser.FullName – <span class="font-weight-400">@comment.CreatedAt.ToString("HH:mm d MMMM, yyyy")</span>
+                </h6>
+                <p>
+                    @comment.Text
+                </p>
+            </div>
+        </div>
+    }
+}
