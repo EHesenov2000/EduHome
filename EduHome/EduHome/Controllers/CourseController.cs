@@ -69,7 +69,7 @@ namespace EduHome.Controllers
                 Course = _context.Courses.Include(x => x.Category).Include(x=>x.Features).Include(x => x.CourseComments).ThenInclude(x => x.AppUser).Include(x => x.Features).Include(x => x.Teacher).Include(x => x.CourseTags).ThenInclude(x => x.Tag).FirstOrDefault(x => x.Id == id),
                 Tags = _context.Tags.ToList(),
                 Categories = _context.Categories.Include(x=>x.Courses).ToList(),
-                Requests = _context.Requests.Include(x=>x.Course).Include(x => x.Course).ThenInclude(x => x.Features).Include(x => x.AppUser).ToList(),
+                Requests = _context.Requests.Include(x => x.Course).ThenInclude(x => x.Features).Include(x => x.AppUser).ToList(),
             };
             return View(courseDetail);
         }
@@ -179,12 +179,12 @@ namespace EduHome.Controllers
         }
 
         [Authorize(Roles = "Member")]
-        public IActionResult RejectCourse(int courseId, string userId)
+        public IActionResult RejectCourse(int courseId,string userId)
         {
-            if (_context.Requests.FirstOrDefault(x => x.CourseId == courseId && x.AppUserId == userId) != null)
+            if (_context.Requests.FirstOrDefault(x => x.CourseId == courseId && x.AppUserId == userId) !=null)
             {
                 DateTime date = _context.Requests.Where(x => x.CourseId == courseId && x.AppUserId == userId).ToList().Max(x => x.RequestDate);
-                _context.Requests.FirstOrDefault(x => x.CourseId == courseId && x.AppUserId == userId && x.RequestDate == date).Status = Enums.RequestStatus.UserReject;
+                _context.Requests.FirstOrDefault(x => x.CourseId == courseId && x.AppUserId == userId && x.RequestDate==date).Status = Enums.RequestStatus.UserReject;
 
             }
             _context.SaveChanges();

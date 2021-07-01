@@ -11,17 +11,17 @@ namespace EduHome.Models
     public class Course
     {
         public int Id { get; set; }
-        [StringLength(maximumLength:100, ErrorMessage = "max uzunluq 100")]
+        [StringLength(maximumLength:100)]
         public string Image { get; set; }
         [NotMapped]
         public IFormFile ImageFile { get; set; }
-        [StringLength(maximumLength:400, ErrorMessage = "max uzunluq 400")]
+        [StringLength(maximumLength:400)]
         public string Context { get; set; }
-        [StringLength(maximumLength:300, ErrorMessage = "max uzunluq 300")]
+        [StringLength(maximumLength:300)]
         public string About { get; set; }
-        [StringLength(maximumLength:300, ErrorMessage = "max uzunluq 300")]
+        [StringLength(maximumLength:300)]
         public string HowToApply { get; set; }
-        [StringLength(maximumLength:300, ErrorMessage = "max uzunluq 300")]
+        [StringLength(maximumLength:300)]
         public string Certification { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }

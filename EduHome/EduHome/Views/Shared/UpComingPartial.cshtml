@@ -6,7 +6,7 @@
     <div class="col-md-4 col-sm-6 col-xs-12">
         <div class="single-event mb-35">
             <div class="event-img">
-                <a asp-action="detail" asp-controller="event" asp-route-id="@item.Id"><img src="~/uploads/event/@item.Image" alt="event"></a>
+                <a asp-action="detail" asp-controller="event" asp-route-id="@item.Id"><img src="~/img/event/@item.Image" alt="event"></a>
                 <div class="event-date">
                     <h3>@item.StartTime.ToString("dd") <span>@item.StartTime.ToString("MMM")</span></h3>
                 </div>

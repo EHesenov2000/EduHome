@@ -48,8 +48,7 @@ namespace EduHome
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromSeconds(30);
                 options.Lockout.MaxFailedAccessAttempts = 3;
             }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
-            System.Net.ServicePointManager.ServerCertificateValidationCallback =
-    ((sender, certificate, chain, sslPolicyErrors) => true);
+
             services.AddScoped<LayoutViewModelService>();
             services.AddScoped<DashboardLayoutViewModelService>();
             services.AddHttpContextAccessor();

@@ -11,15 +11,15 @@ namespace EduHome.Models
     public class Testimonial
     {
         public int Id { get; set; }
-        [StringLength(maximumLength:100, ErrorMessage = "max uzunluq 100")]
+        [StringLength(maximumLength:100)]
         public string Image { get; set; }
         [NotMapped]
         public IFormFile ImageFile { get; set; }
-        [StringLength(maximumLength:200, ErrorMessage = "max uzunluq 200")]
+        [StringLength(maximumLength:200)]
         public string Text { get; set; }
-        [StringLength(maximumLength:30, ErrorMessage = "max uzunluq 30")]
+        [StringLength(maximumLength:30)]
         public string FullName { get; set; }
-        [StringLength(maximumLength:20, ErrorMessage = "max uzunluq 20")]
+        [StringLength(maximumLength:20)]
         public string Position { get; set; }
     }
 }

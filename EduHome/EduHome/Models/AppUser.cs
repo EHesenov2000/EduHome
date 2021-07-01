@@ -18,12 +18,12 @@ namespace EduHome.Models
         public string Password { get; set; }
 
         [NotMapped]
-        [StringLength(maximumLength: 50, ErrorMessage = "max uzunluq 50")]
+        [StringLength(maximumLength: 50)]
         [DataType(DataType.Password), Compare(nameof(Password))]
         public string ConfirmedPassword { get; set; }
 
         [NotMapped]
-        [StringLength(maximumLength: 50, ErrorMessage = "max uzunluq 50")]
+        [StringLength(maximumLength: 50)]
         [DataType(DataType.Password)]
         public string CurrentPassword { get; set; }
 

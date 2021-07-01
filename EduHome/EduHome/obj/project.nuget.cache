@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JCC2njDyrLxBdPlnBYhJjGOU+gqDFEv+bWTI82ATOW8UmoaJ2/gzly84O2ucYMwjkC5YhfF+6KUA28LldTs4CQ==",
+  "dgSpecHash": "TxTKwrVkv636KmOHxUDGjq01ZFH3Tloit/5fIbQ8uwFuAeKaRFtrrlWWNfswxFIzlTt9siFkia/No00PgZOi8w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\elman\\Desktop\\BACKEND\\p219_backend_project-EHesenov2000\\EduHome\\EduHome\\EduHome.csproj",
+  "projectFilePath": "C:\\Users\\elman\\Desktop\\BACKEND  DERSDE\\p219_backend_project-EHesenov2000\\p219_backend_project-EHesenov2000\\EduHome\\EduHome\\EduHome.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\elman\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.15\\microsoft.aspnetcore.cryptography.internal.3.1.15.nupkg.sha512",
     "C:\\Users\\elman\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.15\\microsoft.aspnetcore.cryptography.keyderivation.3.1.15.nupkg.sha512",

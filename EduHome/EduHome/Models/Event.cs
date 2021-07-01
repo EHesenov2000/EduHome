@@ -11,9 +11,9 @@ namespace EduHome.Models
     public class Event
     {
         public int Id { get; set; }
-        [StringLength(maximumLength:150, ErrorMessage = "max uzunluq 150")]
+        [StringLength(maximumLength:150)]
         public string Name { get; set; }
-        [StringLength(maximumLength:100, ErrorMessage = "max uzunluq 100")]
+        [StringLength(maximumLength:100)]
         public string Image { get; set; }
         [NotMapped]
         public IFormFile ImageFile { get; set; }

@@ -11,11 +11,11 @@ namespace EduHome.Models
     public class AboutEduHome
     {
         public int Id { get; set; }
-        [StringLength(maximumLength:100,ErrorMessage ="max uzunluq 100")]
+        [StringLength(maximumLength:100)]
         public string Title { get; set; }
-        [StringLength(maximumLength:300, ErrorMessage = "max uzunluq 300")]
+        [StringLength(maximumLength:300)]
         public string Text { get; set; }
-        [StringLength(maximumLength:100, ErrorMessage = "max uzunluq 100")]
+        [StringLength(maximumLength:100)]
         public string Image { get; set; }
         [NotMapped]
         public IFormFile ImageFile { get; set; }

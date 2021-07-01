@@ -9,7 +9,7 @@ namespace EduHome.Models
     public class Tag
     {
         public int Id { get; set; }
-        [StringLength(maximumLength:20, ErrorMessage = "max uzunluq 20")]
+        [StringLength(maximumLength:20)]
         public string Name { get; set; }
         public List<EventTags> EventTags { get; set; }
         public List<CourseTags> CourseTags { get; set; }

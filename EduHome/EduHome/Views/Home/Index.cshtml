@@ -16,29 +16,29 @@
     <div class="slider-owl owl-theme owl-carousel">
         @foreach (var item in Model.Sliders)
         {
-        <div class="single-slide item" style="background-image: url(@Html.Raw("/uploads/slider/"+@item.BackgroundImage)  )">
-            <!-- Start Slider Content -->
-            <div class="slider-content-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="slide-content-wrapper">
-                                <div class="slide-content">
-                                    <h2>@item.Title </h2>
-                                    <p>@item.Context </p>
-                                    <a class="default-btn" href="about.html">Learn more</a>
+            <div class="single-slide item" style="background-image: url(@Html.Raw("/uploads/slider/"+@item.BackgroundImage) )">
+                <!-- Start Slider Content -->
+                <div class="slider-content-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="slide-content-wrapper">
+                                    <div class="slide-content">
+                                        <h2>@item.Title </h2>
+                                        <p>@item.Context </p>
+                                        <a class="default-btn" href="about.html">Learn more</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="slider-img">
-                                <img src="~/uploads/slider/@item.OverImage" alt="slider">
+                            <div class="col-md-5">
+                                <div class="slider-img">
+                                    <img src="~/uploads/slider/@item.OverImage" alt="slider">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         }
     </div>
 </section>
@@ -143,7 +143,7 @@
         <div class="row">
             @await Html.PartialAsync("UpComingPartial",Model.Events)
         </div>
-    </div>
+    </div>s
 </div>
 <!-- Event Area End -->
 <!-- Testimonial Area Start -->

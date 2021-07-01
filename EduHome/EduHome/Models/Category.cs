@@ -9,7 +9,7 @@ namespace EduHome.Models
     public class Category
     {
         public int Id { get; set; }
-        [StringLength(maximumLength:40, ErrorMessage = "max uzunluq 40")]
+        [StringLength(maximumLength:40)]
         public string Name { get; set; }
         public List<Course> Courses { get; set; }
     }

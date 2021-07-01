@@ -9,7 +9,7 @@ namespace EduHome.Models
     public class Skill
     {
         public int Id { get; set; }
-        [StringLength(maximumLength:30, ErrorMessage = "max uzunluq 30")]
+        [StringLength(maximumLength:30)]
         public string Name { get; set; }
         public int Percent { get; set; }
         public int TeacherId { get; set; }

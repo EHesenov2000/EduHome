@@ -14,7 +14,7 @@ namespace EduHome.Models
         public string AppUserId { get; set; }
         public AppUser AppUser { get; set; }
         [Required]
-        [StringLength(maximumLength:500, ErrorMessage = "max uzunluq 500")]
+        [StringLength(maximumLength:500)]
         public string Text { get; set; }
         public DateTime CreatedAt { get; set; }
     }

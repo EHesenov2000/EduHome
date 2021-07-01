@@ -8724,11 +8724,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\elman\\Desktop\\BACKEND\\p219_backend_project-EHesenov2000\\EduHome\\EduHome\\EduHome.csproj",
+      "projectUniqueName": "C:\\Users\\elman\\Desktop\\BACKEND  DERSDE\\p219_backend_project-EHesenov2000\\p219_backend_project-EHesenov2000\\EduHome\\EduHome\\EduHome.csproj",
       "projectName": "EduHome",
-      "projectPath": "C:\\Users\\elman\\Desktop\\BACKEND\\p219_backend_project-EHesenov2000\\EduHome\\EduHome\\EduHome.csproj",
+      "projectPath": "C:\\Users\\elman\\Desktop\\BACKEND  DERSDE\\p219_backend_project-EHesenov2000\\p219_backend_project-EHesenov2000\\EduHome\\EduHome\\EduHome.csproj",
       "packagesPath": "C:\\Users\\elman\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\elman\\Desktop\\BACKEND\\p219_backend_project-EHesenov2000\\EduHome\\EduHome\\obj\\",
+      "outputPath": "C:\\Users\\elman\\Desktop\\BACKEND  DERSDE\\p219_backend_project-EHesenov2000\\p219_backend_project-EHesenov2000\\EduHome\\EduHome\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\elman\\AppData\\Roaming\\NuGet\\NuGet.Config",

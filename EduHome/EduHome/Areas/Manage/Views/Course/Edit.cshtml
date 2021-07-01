@@ -96,10 +96,6 @@
                         <span><i class="fas fa-minus delete-feature"> </i></span>
 
                     </div>
-                    if (count==Model.Features.Count()-1)
-                    {
-                        <div data-count="@Model.Features.Count()" class="burdadi">@count</div>
-                    }
                     count++;
                 }
             }
@@ -121,74 +117,57 @@
 
 @section Scripts{
     <script>
-import { isEmptyObject } from "jquery";
-
-
-        document.getElementsByClassName("add-feature")[0].onclick = function (e) {
-            e.preventDefault();
-            var a = +(document.getElementsByClassName("burdadi")[0].getAttribute("data-count"));
-            var b = a + 1;
-        
-                var inputGroup = ` <div class="form-group col-12" data-index="0">
-                    <label for="featureName">Feature name</label>
-                    <input name="Features[`+ a + `].Name" type="text" />
-                    <span class="text-danger"></span>
-
-                    <label for="featureValue"> Feature value</label>
-                    <input name="Features[`+ a + `].Value" type="text" />
-                    <span class="text-danger"></span>
-                    <span><i class="fas fa-minus delete-feature"> </i></span>
-                </div>`;
-                var c = document.createElement("div");
-                c.innerHTML = inputGroup;
-                document.getElementById("features").append(c);
-                a = a + 1;
-               document.getElementsByClassName("burdadi")[0].setAttribute("data-count",a);
-
-        }
-        for (var i = 0; i < document.getElementsByClassName("delete-feature").length; i++) {
-            document.getElementsByClassName("delete-feature")[+i].onclick = function (e) {
+        $(document).ready(function () {
+            $(document).on("click", ".add-feature", function (e) {
                 e.preventDefault();
-                this.parentElement.parentElement.innerHTML = isEmptyObject(true);
-                console.log(i + "i");
-                //burda nulll edirem evelce klik olunanin goruntusun sonra demeli qalanlarin silecem claslarin cagirib her birinde data atributu iki iki deyisecem. 
-                //cunki her iki silecem clasi bir obyekte aiddir
-                var a = +(document.getElementsByClassName("burdadi")[0].getAttribute("data-count"));
-                var b = a + 1;
-                a = a - 1;
-                console.log(a);
-                document.getElementsByClassName("burdadi")[0].setAttribute("data-count", a);
 
+                var nextIndex = $(this).attr("data-nextIndex");
+
+                var inputGroup = ` <div class="form-group col-12" data-index="0">
+                <label for="featureName">Feature name</label>
+                <input name="Features[`+ nextIndex + `].Name" type="text" />
+                <span class="text-danger"></span>
+
+                <label for="featureValue"> Feature value</label>
+                <input name="Features[`+ nextIndex + `].Value" type="text" />
+                <span class="text-danger"></span>
+                <span><i class="fas fa-minus delete-feature"> </i></span>
+            </div>`
+
+                $("#features").append($(inputGroup))
+
+                nextIndex = +nextIndex + 1;
+                console.log(nextIndex)
+
+                $(this).attr("data-nextIndex", nextIndex)
+            })
+
+            //$(document).on("click", ".delete-feature", function (e) {
+            //    e.preventDefault();
+            //    console.log("test");
+
+            //    $(this).parents(".form-group").empty();
+            //})
+        })
+
+        for (var i = 0; i < document.getElementsByClassName("delete-feature").length; i++) {
+
+            document.getElementsByClassName("delete-feature")[i].onclick = function (e) {
+                e.preventDefault();
+                this.parentElement.parentElement.innerHTML = null;
+                console.log("salam qaqa");
+                for (var z = 0; z < document.getElementsByClassName("silecem").length; z += 2) {
+                    var count = 0;
+                    for (var t = 0; t < 2; t++) {
+                        var name = "Features[" + (z / 2) + "].Name";
+                        var value = "Features[" + (z / 2) + "].Value";
+                        document.getElementsByClassName("silecem")[z].setAttribute("name", name);
+                        document.getElementsByClassName("silecem")[z + 1].setAttribute("name", value);
+                        count++;
+                    }
+                }
             }
         }
-  
-
-        //for (var i = 0; i < document.getElementsByClassName("delete-feature").length; i++) {
-
-        //    document.getElementsByClassName("delete-feature")[i].onclick = function (e) {
-        //        e.preventDefault();
-        //        var a = $(".burdadi").attr("data-count");
-        //        a = +a;
-        //        if (a >= 0) {
-
-        //            a = a - 1;
-        //            console.log(a);
-
-        //            $(".burdadi").attr("data-count", a);
-        //        }
-        //        this.parentElement.parentElement.innerHTML = null;
-        //        for (var z = 0; z < document.getElementsByClassName("silecem").length; z += 2) {
-        //            var count = 0;
-        //            for (var t = 0; t < 2; t++) {
-        //                var name = "Features[" + (z / 2) + "].Name";
-        //                var value = "Features[" + (z / 2) + "].Value";
-        //                document.getElementsByClassName("silecem")[z].setAttribute("name", name);
-        //                document.getElementsByClassName("silecem")[z + 1].setAttribute("name", value);
-        //                count++;
-        //            }
-        //        }
-        //    }
-        //}
 
     </script>
 }

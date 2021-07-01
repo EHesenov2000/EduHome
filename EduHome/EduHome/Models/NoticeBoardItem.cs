@@ -10,7 +10,7 @@ namespace EduHome.Models
     {
         public int Id { get; set; }
         public DateTime CreatedAt { get; set; }
-        [StringLength(maximumLength: 200, ErrorMessage = "max uzunluq 200")]
+        [StringLength(maximumLength: 200)]
         public string Text { get; set; }
     }
 }

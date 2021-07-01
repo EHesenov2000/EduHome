@@ -11,13 +11,13 @@ namespace EduHome.Models
     public class Slider
     {
         public int Id { get; set; }
-        [StringLength(maximumLength:100, ErrorMessage = "max uzunluq 100")]
+        [StringLength(maximumLength:100)]
         public string Title { get; set; }
-        [StringLength(maximumLength:300, ErrorMessage = "max uzunluq 300")]
+        [StringLength(maximumLength:300)]
         public string Context { get; set; }
-        [StringLength(maximumLength:100, ErrorMessage = "max uzunluq 100")]
+        [StringLength(maximumLength:100)]
         public string BackgroundImage { get; set; }
-        [StringLength(maximumLength:100, ErrorMessage = "max uzunluq 100")]
+        [StringLength(maximumLength:100)]
         public string OverImage { get; set; }
 
         [NotMapped]
